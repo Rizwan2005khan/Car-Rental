@@ -12,6 +12,7 @@ import AddCar from './pages/owner/AddCar'
 import ManageCar from './pages/owner/ManageCar'
 import ManageBooking from './pages/owner/ManageBooking'
 import Login from './components/Login'
+import PriceTracker from './pages/PriceTracker'
 
 const App = () => {
 
@@ -27,6 +28,7 @@ const App = () => {
         <Route path='/car-details/:id' element={<CarDetails />} />
         <Route path='/cars' element={<Cars />} />
         <Route path='/my-bookings' element={<MyBooking />} /> 
+        <Route path='/price-tracker' element={<PriceTracker />} />
         <Route path='/owner' element={<Layout />}>
         <Route index element={<Dashboard />} />
         <Route path='add-car' element={<AddCar />} />
