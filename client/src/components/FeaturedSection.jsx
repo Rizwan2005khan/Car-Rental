@@ -1,33 +1,56 @@
 import React from 'react'
 import Title from './Title'
-import { assets, dummyCarData } from '../assets/assets'
+import { assets } from '../assets/assets'
 import CarCard from './CarCard'
 import { useNavigate } from 'react-router-dom'
+import { useAppContext } from '../context/AppContext'
+import {motion} from 'motion/react'
 
 const FeaturedSection = () => {
 
     const navigate = useNavigate()
+    const {cars} = useAppContext()
   return (
-    <div className='flex flex-col items-center py-24 px-6 md:px-16 lg:px-24 xl:px-32'>
-        <div>
+    <motion.div
+    initial={{opacity: 0, y: 40}}
+    whileInView={{opacity: 1, y: 0}}
+    transition={{duration: 1, ease: "easeOut"}}
+     className='flex flex-col items-center py-24 px-6 md:px-16 lg:px-24 xl:px-32'>
+        <motion.div
+        initial={{opacity: 0, y: 20}}
+        animate={{opacity: 1, y: 0}}
+        transition={{duration: 1, delay: 0.5}}
+        >
             <Title title='Featured Vehicles' subTitle='Explore our selection of premium vehicles available for your next adventure.' />
-        </div>      
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-18">
+        </motion.div>      
+        <motion.div
+        initial={{opacity: 0, y: 100}}
+        animate={{opacity: 1, y: 0}}
+        transition={{duration: 0.5, delay: 1}}
+         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-18">
             {
-                dummyCarData.slice(0,6).map((car) => (
-                    <div key={car._id}>
+                cars.slice(0,6).map((car) => (
+                    <motion.div
+                    initial={{opacity: 0, scale: 0.95}}
+                    animate={{opacity: 1, scale: 1}}
+                    transition={{duration: 0.4, ease: "easeOut"}}
+                     key={car._id}>
                         <CarCard car={car} />
-                    </div>
+                    </motion.div>
                 ))
             }
-        </div>
+        </motion.div>
 
-        <button onClick={() => (
+        <motion.button
+        initial={{opacity: 0, y: 20}}
+        whileInView={{opacity: 1, y: 0}}
+        transition={{delay: 0.6, duration: 0.4}}
+         onClick={() => (
             navigate('/cars')
             )} className="flex items-center justify-center gap-2 px-6 py-2 border border-borderColor hover:bg-gray-50 rounded-md mt-18 cursor-pointer">
             Explore all cars <img src={assets.arrow_icon} alt='arrow' />
-        </button>
-    </div>
+        </motion.button>
+    </motion.div>
   )
 }
 
