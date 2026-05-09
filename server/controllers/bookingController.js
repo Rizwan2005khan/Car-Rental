@@ -1,5 +1,6 @@
 import Booking from "../models/Booking.js"
 import Car from "../models/Car.js";
+import User from "../models/User.js";
 
 // Function to check availability of car for a given date
 export const checkAvailability = async (car, pickupDate, returnDate ) => {
@@ -40,6 +41,16 @@ export const createBooking = async (req, res) => {
     try {
         const {_id} = req.user;
         const {car, pickupDate, returnDate} = req.body;
+
+        // KYC Verification Check
+        const user = await User.findById(_id);
+        if (!user.kyc || user.kyc.status !== 'verified') {
+            return res.json({ 
+                success: false, 
+                message: "Please complete your KYC verification before booking a car",
+                kycRequired: true
+            });
+        }
 
         const isAvailable = await checkAvailability(car, pickupDate, returnDate)
         if(!isAvailable){

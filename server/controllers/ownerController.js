@@ -88,14 +88,19 @@ export const toggleCarAvailability = async (req, res) => {
 // api to delete car
 export const deleteCar = async (req, res) => {
     try {
-        const {_id} = req.user;
+        const { _id, role } = req.user;
         const {carId} = req.body;
         const car = await Car.findById(carId)
 
-        //checking is car belong to the user
-        if(car.owner.toString() !== _id.toString()){
+        if (!car) {
+            return res.json({ success: false, message: "Car not found" })
+        }
+
+        // Super-admins can delete any car; owners can only delete their own
+        if (role !== 'super-admin' && car.owner.toString() !== _id.toString()) {
             return res.json({success: false, message: "Unauthorized"})
         }
+
         car.owner = null
         car.isAvailable = false
         await car.save()
@@ -111,7 +116,7 @@ export const deleteCar = async (req, res) => {
 export const getDashboardData = async (req, res) => {
     try {
         const {_id, role} = req.user
-        if(role !== 'owner'){
+        if(role !== 'owner' && role !== 'super-admin'){
             return res.json({success: false, message: "Unauthorized"})
         }
 

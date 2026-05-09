@@ -5,23 +5,25 @@ import { Outlet } from "react-router-dom";
 import { useAppContext } from "../../context/AppContext";
 
 const Layout = () => {
-
-  const {isOwner, navigate} = useAppContext()
+  const { isOwner, isSuperAdmin, navigate } = useAppContext()
 
   useEffect(() => {
-    if(!isOwner){
+    if (!isOwner && !isSuperAdmin) {
       navigate('/')
     }
-  },[isOwner])
+  }, [isOwner, isSuperAdmin])
+
   return (
-    <div className="flex flex-col">
-      <NavbarOwner />
-      <div className="flex">
-        <Sidebar />
-        <Outlet />
+    <div className="flex h-screen overflow-hidden bg-[#F4F6FA]">
+      <Sidebar />
+      <div className="flex flex-col flex-1 overflow-hidden">
+        <NavbarOwner />
+        <main className="flex-1 overflow-y-auto">
+          <Outlet />
+        </main>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Layout;
+export default Layout

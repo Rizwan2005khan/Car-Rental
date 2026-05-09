@@ -1,3 +1,8 @@
 {
-  "cSpell.words": ["imagekit", "pickuplocation", "VITE"]
+  "cSpell.words": [
+    "imagekit",
+    "pickuplocation",
+    "VITE"
+  ],
+  "git.ignoreLimitWarning": true
 }

@@ -5,12 +5,17 @@ import Home from './pages/Home'
 import CarDetails from './pages/carDetails'
 import Cars from './pages/Cars'
 import MyBooking from './pages/MyBooking'
+import AIPriceAdvisor from './pages/AIPriceAdvisor'
 import Footer from './components/Footer'
 import Layout from './pages/owner/Layout'
 import Dashboard from './pages/owner/Dashboard'
 import AddCar from './pages/owner/AddCar'
 import ManageCar from './pages/owner/ManageCar'
 import ManageBooking from './pages/owner/ManageBooking'
+import AllUsers from './pages/owner/AllUsers'
+import AllFleet from './pages/owner/AllFleet'
+import KYCReview from './pages/owner/KYCReview'
+import KYCVerification from './pages/KYCVerification'
 import Login from './components/Login'
 import { Toaster } from 'react-hot-toast'
 import { useAppContext } from './context/AppContext'
@@ -29,12 +34,18 @@ const App = () => {
         <Route path='/' element={<Home />} />
         <Route path='/car-details/:id' element={<CarDetails />} />
         <Route path='/cars' element={<Cars />} />
-        <Route path='/my-bookings' element={<MyBooking />} /> 
+        <Route path='/my-bookings' element={<MyBooking />} />
+        <Route path='/kyc-verification' element={<KYCVerification />} />
+        <Route path='/ai-price-advisor' element={<AIPriceAdvisor />} />
         <Route path='/owner' element={<Layout />}>
-        <Route index element={<Dashboard />} />
-        <Route path='add-car' element={<AddCar />} />
-        <Route path='manage-cars' element={<ManageCar />} />
-        <Route path='manage-bookings' element={<ManageBooking />} />
+          <Route index element={<Dashboard />} />
+          <Route path='add-car' element={<AddCar />} />
+          <Route path='ai-price-advisor' element={<AIPriceAdvisor />} />
+          <Route path='manage-cars' element={<ManageCar />} />
+          <Route path='manage-bookings' element={<ManageBooking />} />
+          <Route path='all-users' element={<AllUsers />} />
+          <Route path='all-fleet' element={<AllFleet />} />
+          <Route path='kyc-review' element={<KYCReview />} />
         </Route>
       </Routes>
 

@@ -33,3 +33,14 @@ export const protect = async (req, res, next) => {
         return res.json({ success: false, message: "Not authorized" });
     }
 };
+
+export const adminProtect = async (req, res, next) => {
+    try {
+        if (!req.user || req.user.role !== 'super-admin') {
+            return res.json({ success: false, message: "Super Admin privileges required" });
+        }
+        next();
+    } catch (error) {
+        return res.json({ success: false, message: "Access Denied" });
+    }
+};

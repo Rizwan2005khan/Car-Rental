@@ -10,7 +10,28 @@
   --color-primary: #2563EB;
   --color-primary-dull: #1F58D8;
   --color-light: #F1F5F9;
-  --color-borderColor: #c4c7d2;
-  
+  --color-borderColor: #e2e8f0;
 }
 
+@layer utilities {
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-xl;
+  }
+  
+  .premium-gradient {
+    @apply bg-gradient-to-br from-blue-600 to-indigo-700;
+  }
+  
+  .premium-text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600;
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

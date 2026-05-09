@@ -1,6 +1,6 @@
 import React from 'react';
 import { assets } from '../assets/assets';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 
 const childVariants = {
   hidden: { opacity: 0, y: 20 },
